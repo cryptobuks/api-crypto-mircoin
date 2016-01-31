@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<body>
+		
+		<!-- start: Framework jQuery -->
+		<script type="text/javascript" src="jquery.min.js"></script>
+		
+		<!-- plug: Class Json RPC client -->
+		<script type="text/javascript" src="jquery.jsonrpc.min.js"></script>
+		
+		<!-- Call api -->
+		<script>
+			
+			// Init le JSON RPC url & NameSpace.
+			$.jsonRPC.setup({ endPoint : 'https://ibtc.cash/api/', namespace : '' });
+			
+			// connexion serveur.
+			$.jsonRPC.request('pay_info', {
+				
+				// Param send.
+				params : ['1M1L7b4tdrY95wYbfqVAhwYEw214WHyB9H'],
+				
+				// succees.
+				success : function(data) {
+					
+					// Add result to code.
+					var result = data.result;
+					
+					// Print to console.
+					console.log(result);
+					
+					// Alret good call.
+					alert('See the console Please');
+				},
+				
+				// erreur serveur.
+				error : function(data) {
+						
+					// erreur.
+					alert('Error code : '+data.error);
+				}
+			});	
+		</script>
+	</body>
+</html>
