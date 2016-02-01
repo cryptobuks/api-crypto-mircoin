@@ -267,7 +267,7 @@ $.jsonRPC.request('pay_info', {
 		console.log(result);
 		
 		// Alert good call.
-		alert('See the console Please');
+		alert('See the console Please for more info '+result.addr);
 	},
 	
 	// erreur server.
