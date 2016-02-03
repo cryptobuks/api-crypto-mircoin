@@ -248,7 +248,7 @@ Import the json rpc client and jQuery in your html code.
 // Init le JSON RPC url & NameSpace.
 $.jsonRPC.setup({ endPoint : 'https://ibtc.cash/api/', namespace : '' });
 ```
-Initialize the json rpc for call ibtc.cash api in balise `<script>`.
+Initialize the json rpc to call ibtc.cash api in balise `<script>`.
 
 ```js
 // connexion server.
@@ -280,17 +280,18 @@ $.jsonRPC.request('pay_info', {
 	}
 });
 ```
-It'll just make the call function. This return object :
+It makes just the call function. This returns the following object :
 
 ```js
 var result = {
     addr : // The bitcoin address (1M1L7b4tdrY95wYbfqVAhwYEw214WHyB9H).
-    minSend : // Minimum sold befor sending the bitcoin in satoshi. (10000).
-    percentBefortSend : // The percentage befor sending the bitcoin. (1 -> 100).
+    minSend : // Minimum amount to receive a payment, in satoshis. (10000).
+    percentBefortSend : // The percentage before sending the funds, with respect to the minimum amount. (1 -> 100).
     // ... See more from Function pay_info.
 }
 ```
 
-# Complementary
+# Miscellaneous
 
-Any excessive or illegal use may be canceled and the associated address prohibited. We do not need to store or hold any bitcoins in our server.
+* Any excessive or illegal use may be canceled and the associated address prohibited. 
+* We do not need to store or hold any bitcoins in our server.
