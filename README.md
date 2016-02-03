@@ -11,11 +11,11 @@
 
 ## Introduction
 
-This system allows you to receive bitcoin on your platform. Your customer goes to visit ibtc.cash and recovering a code of a money value. Just make a call containing the ticket code of your customer and the bitcoin address that will receive the bitcoins. You will receive your bitcoins, within 24 hours, working days and the minimum limit for withdrawal is less than 5 cents. With a simple query you can be informed about the status of your transactions.
+This system allows you to receive bitcoin on your platform. Your customer visits ibtc.cash and gets a code, with a bitcoin value. Just make a call containing the ticket code of your customer and the bitcoin address that will receive the bitcoins. You will receive your bitcoins, within 24 hours, working days and the minimum limit for withdrawal is less than 5 cents. With a simple query you can be informed about the status of your transactions.
 
 This application consists of 2 JSON RPC call. You can download the PHP or jQuery package, which contains the class JSON RPC Client and an example of use. After downloading, install the JSON RPC Client on your app and use it in your scrypt.
 
-The value of the payment received in satoshi. Divide by 100000000 to get the value in BTC.
+The value of the received payment is in satoshi. Divide by 100000000 to get the value in BTC.
 
 #### API URL
 
@@ -28,28 +28,28 @@ The value of the payment received in satoshi. Divide by 100000000 to get the val
 # Function pay_info
 `pay_info(ADDR)`
 
-This function returns all information about the bitcoin address.
+This function returns all the data about the bitcoin address.
 
-**Parameter**
+**Parameters**
 
 | Fields | Type| Description |
 |------|------|-------------|
-|**ADDR**|String|The bitcoin address that received the transaction.|
+|**ADDR**|String|The bitcoin address that received the transactions.|
 
 **Return** JSON reply
 
 ```php
 {
     addr : // The bitcoin address (1M1L7b4tdrY95wYbfqVAhwYEw214WHyB9H).
-    minSend : // Minimum sold befor sending the bitcoin in satoshi. (10000).
-    percentBefortSend : // The percentage befor sending the bitcoin. (1 -> 100).
-    nbTickets : // Number of ticket total (Default 0).
-    nbTicketsWait : // Number of ticket wait to send you (Default 0).
-    nbTicketsSend : // Number of ticket sending you (Default 0).
-    sumTotal : // Amount total donat by ibtc.cash (Default 0).
-    sumWait : // Amount wait to send you (Default 0).
-    sumSend : // Amount sending you (Default 0).
-    waitTicket : [ // List of tickets.
+    minSend : // Minimum amount to receive a payment, in satoshis. (10000).
+    percentBefortSend : // The percentage before sending the funds, with respect to the minimum amount. (1 -> 100).
+    nbTickets : // Total number of received tickets (Default 0).
+    nbTicketsWait : // Number of tickets waiting to be paid to you (Default 0).
+    nbTicketsSend : // Number of ticket already paid to you (Default 0).
+    sumTotal : // Total amount total received by ibtc.cash (Default 0).
+    sumWait : // Amount waiting to be paid to you (Default 0).
+    sumSend : // Amount already paid to you (Default 0).
+    waitTicket : [ // List of tickets in the waiting-to-be-paid queu.
         [0] : {
             date : // Date of ticket in timestamp (1454174032).
             satsum : // Amount in satoshi (50).
@@ -57,7 +57,7 @@ This function returns all information about the bitcoin address.
         }
         [1] : ...
     ]
-    sendTx : [ // list of bitcoin transaction.
+    sendTx : [ // list of bitcoin transactions.
         [0] : {
             tx : // Transaction bitcoin id (317d91f17018041939f2b72c184f119c99e8eea92747e1de93533347b589bcaa).
             nbTicket : // Number of ticket in this transaction (120).
