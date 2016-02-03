@@ -42,7 +42,7 @@ This function returns all the data about the bitcoin address.
 {
     addr : // The bitcoin address (1M1L7b4tdrY95wYbfqVAhwYEw214WHyB9H).
     minSend : // Minimum amount to receive a payment, in satoshis. (10000).
-    percentBefortSend : // The percentage before sending the funds, with respect to the minimum amount. (1 -> 100).
+    percentBefortSend : // The percentage before sending the funds, with respect to the minimum amount. (0 -> 100).
     nbTickets : // Total number of received tickets (Default 0).
     nbTicketsWait : // Number of tickets waiting to be paid to you (Default 0).
     nbTicketsSend : // Number of ticket already paid to you (Default 0).
@@ -81,7 +81,7 @@ This function returns all the data about the bitcoin address.
 # Function pay_send
 `pay_send(ADDR, CODE)`
 
-This function associate the client ticket code to your address bitcoin. Return info ticket if success.
+This function associates the client ticket code to your address bitcoin. It returns data with respect to the ticket in case of success.
 
 | Fields | Type| Description |
 |------|------|-------------|
@@ -105,19 +105,19 @@ This function associate the client ticket code to your address bitcoin. Return i
 
 ## Manage Error
 
-**Main error** / List of error that can be returned by the API.
+**Main error** / List of errors that can be returned by the API.
 
 | Code | Error |
 |----------|--------|
 |`SERV_ERROR_NOT_FIND_FILE`|Error loading the execution file.|
-|`SERV_ERROR_CONNECT_MYSQL`|MySQL server connection impossible. Error in the access data.|
-|`SERV_ERROR_INVALID_PARAM_OR_METHODE`|Incorrect methods or settings. Error in the access data.|
+|`SERV_ERROR_CONNECT_MYSQL`|MySQL server connection impossible. Error in the access of data.|
+|`SERV_ERROR_INVALID_PARAM_OR_METHODE`|Incorrect methods or settings. Error in the access of data.|
 |`SERV_ERROR_OFFLINE_MESSAGE`|The application is currently down for maintenance. Sorry for the inconvenience.|
 |`SERV_ERROR_DATABASE`|Cannot connect to the SQL database. Error in the data.|
 |`FORM_WARNING_ADDR_BTC_INVALID`|Invalid bitcoin address|
-|`FORM_WARNING_TICKET_CODE_INVALID`|Le code du ticket n'est pas valide.|
-|`WARNING_TICKET_ALREADY_USE`|Ce ticket est invalide ou déjà utilisé|
-|`WARNING_TICKET_EXPIRED`|Le ticket utiliser est expiré.|
+|`FORM_WARNING_TICKET_CODE_INVALID`|Invalid ticket code.|
+|`WARNING_TICKET_ALREADY_USE`|Invalid ticket code or already used ticket.|
+|`WARNING_TICKET_EXPIRED`|Expired ticket.|
 
 # PHP
 
@@ -146,7 +146,7 @@ $rep = $call->pay_info('1M1L7b4tdrY95wYbfqVAhwYEw214WHyB9H');
 // or call.
 $rep = $call->pay_send('YOUR_BTC_ADDR', 'TIKET_CODE');
 ```
-It'll just make the call function.
+call pay_info and pay_send.
 
 ```php
 <pre>
@@ -155,21 +155,21 @@ It'll just make the call function.
     </code>
 </pre>
 ```
-Print the reply to html. This return Array :
+Print the reply to html. Returns this Array :
 
 ```php
 $rep = Array
 (
     ['addr'] => // The bitcoin address (1M1L7b4tdrY95wYbfqVAhwYEw214WHyB9H).
-    ['minSend'] => // Minimum sold befor sending the bitcoin in satoshi. (10000).
-    ['percentBefortSend'] => // The percentage befor sending the bitcoin. (1 -> 100).
-    ['nbTickets'] => // Number of ticket total (Default 0).
-    ['nbTicketsWait'] => // Number of ticket wait to send you (Default 0).
-    ['nbTicketsSend'] => // Number of ticket sending you (Default 0).
-    ['sumTotal'] => // Amount total donat by ibtc.cash (Default 0).
-    ['sumWait'] => // Amount wait to send you (Default 0).
-    ['sumSend'] => // Amount sending you (Default 0).
-    ['waitTicket'] => Array // List of tickets.
+    ['minSend'] => // Minimum amount to receive a payment, in satoshis. (10000).
+    ['percentBefortSend'] => // The percentage before sending the funds, with respect to the minimum amount. (0 -> 100).
+    ['nbTickets'] => // Total number of received tickets. (Default 0).
+    ['nbTicketsWait'] => // Number of tickets waiting to be paid to you. (Default 0).
+    ['nbTicketsSend'] => // Number of ticket already paid to you. (Default 0).
+    ['sumTotal'] => // Total amount total received by ibtc.cash (Default 0).
+    ['sumWait'] => // Amount waiting to be paid to you (Default 0).
+    ['sumSend'] => // Amount already paid to you (Default 0).
+    ['waitTicket'] => Array // List of tickets in the waiting-to-be-paid queu.
     (
         [0] => Array
         (
@@ -224,7 +224,7 @@ try {
  */
 ```
 
-**WARNING** / You need to enable fopen in your php for externe comunication.
+**WARNING** / You need to enable fopen in your php for extern comunication.
 
 ***
 
