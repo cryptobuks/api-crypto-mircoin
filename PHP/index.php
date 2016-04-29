@@ -16,7 +16,7 @@ require_once 'jsonRPC2Client.php';
 try {
 
     // Init API.
-	$call = new jsonRPC2Client("https://ibtc.cash/api/");
+	$call = new jsonRPC2Client("https://ibtc.cash");
     
     // Call API.
     $rep = $call->pay_info('1M1L7b4tdrY95wYbfqVAhwYEw214WHyB9H');
